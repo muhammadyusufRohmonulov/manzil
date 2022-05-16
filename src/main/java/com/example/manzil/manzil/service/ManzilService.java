@@ -3,8 +3,12 @@ package com.example.manzil.manzil.service;
 import com.example.manzil.manzil.model.Manzil;
 import com.example.manzil.manzil.repository.ManzilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +47,10 @@ public class ManzilService {
             return "Malumot O'chirildi";
         }
         return "Malumot Topilmadi";
+    }
+    public List<Manzil> sahifalash(Integer sahifaRaqami, Integer satrSoni){
+        Pageable pageable = PageRequest.of(sahifaRaqami,satrSoni);
+        Page<Manzil> manzilPage = manzilRepository.findAll(pageable);
+        return manzilPage.getContent();
     }
 }

@@ -33,4 +33,8 @@ public class ManzilController {
     public HttpEntity<?> delete(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(manzilService.delete2(id));
     }
+    @GetMapping("/page")
+    public HttpEntity<?> sahifalash(@RequestParam(defaultValue = "1") Integer sahifa,@RequestParam(defaultValue="5") int soni){
+        return ResponseEntity.status(HttpStatus.OK).body(manzilService.sahifalash(sahifa,soni));
+    }
 }
